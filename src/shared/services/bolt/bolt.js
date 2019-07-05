@@ -33,6 +33,7 @@ import {
   POST_CANCEL_TRANSACTION_MESSAGE,
   BOLT_CONNECTION_ERROR_MESSAGE
 } from './boltWorkerMessages'
+import { getConnectionTimeout } from 'shared/modules/settings/settingsDuck'
 import { NATIVE } from 'services/bolt/boltHelpers'
 
 /* eslint-disable import/no-webpack-loader-syntax */
@@ -43,6 +44,11 @@ let connectionProperties = null
 let boltWorkPool = new WorkPool(() => new BoltWorkerModule(), 10)
 
 function openConnection (props, opts = {}, onLostConnection) {
+  opts = {
+    connectionAcquisitionTimeout: getConnectionTimeout(),
+    ...opts
+  }
+
   return new Promise((resolve, reject) => {
     boltConnection
       .openConnection(props, opts, onLostConnection)

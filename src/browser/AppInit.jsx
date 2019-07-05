@@ -37,6 +37,8 @@ import { GlobalStyle } from './styles/global-styles.js'
 import { detectRuntimeEnv } from 'services/utils.js'
 import { NEO4J_CLOUD_DOMAINS } from 'shared/modules/settings/settingsDuck.js'
 
+global.browserSettings = {}
+
 // Configure localstorage sync
 applyKeys(
   'connections',

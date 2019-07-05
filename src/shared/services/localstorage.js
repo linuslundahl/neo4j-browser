@@ -62,6 +62,7 @@ export function createReduxMiddleware () {
   return store => next => action => {
     const result = next(action)
     const state = store.getState()
+    global.browserSettings = state.settings
     keys.forEach(key => setItem(key, dehydrate(state[key])))
     return result
   }
