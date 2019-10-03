@@ -85,17 +85,23 @@ const StyledCheckbox = styled.input`
   margin-right: 10px;
 `
 export const StyledLabel = styled.label`
-  /* margin-left: 10px; */
   display: inline-block;
-  font-weight: 600;
   vertical-align: middle;
 
   &:first-letter {
     text-transform: uppercase;
   }
+
+  &.bold {
+    font-weight: 600;
+  }
 `
 const StyledRadioEntry = styled.div`
   margin: 10px 0;
+
+  > input {
+    margin-right: 10px;
+  }
 `
 
 export const TextInput = props => {

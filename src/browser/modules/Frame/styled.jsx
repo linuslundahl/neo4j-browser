@@ -81,20 +81,24 @@ export const StyledFrameMainSection = styled.div`
   min-width: 0;
   flex: 1 1 auto;
   height: inherit;
-  display: flex;
-  flex-direction: column;
+  display: column;
+  flex-direction: row;
   width: 100%;
 `
 
 export const StyledFrameAside = styled.div`
-  flex: 0 0 25%;
-  padding: 0 15px;
-  width: 25%;
   font-family: ${props => props.theme.primaryFontFamily};
   font-size: 16px;
   font-weight: 300;
   color: ${props => props.theme.asideText};
   min-width: 150px;
+  padding-right: 15px;
+
+  @media only screen and (min-width: 850px) {
+    flex: 0 0 25%;
+    padding-left: 15px;
+    width: 25%;
+  }
 `
 
 export const StyledFrameContents = styled.div`
@@ -107,6 +111,7 @@ export const StyledFrameContents = styled.div`
       : dim.frameBodyHeight - dim.frameStatusbarHeight * 2 + 'px'};
   ${props => (props.fullscreen ? 'height: 100vh' : null)};
   flex: auto;
+  flex-direction: column;
   display: flex;
   width: 100%;
 
@@ -117,6 +122,10 @@ export const StyledFrameContents = styled.div`
   p {
     margin: 0 0 20px 0;
   }
+
+  @media only screen and (min-width: 850px) {
+    flex-direction: row;
+  }
 `
 
 export const StyledFrameStatusbar = styled.div`
@@ -126,6 +135,8 @@ export const StyledFrameStatusbar = styled.div`
   display: flex;
   flex-direction: row;
   flex: none;
+  padding-left: 15px;
+  padding-right: 15px;
 `
 
 export const StyledFrameSidebar = styled.ul`

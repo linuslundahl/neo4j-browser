@@ -24,9 +24,9 @@ import {
   SyncDisconnectedBanner,
   StyledCancelLink,
   StyledSyncReminderSpan,
-  StyledSyncReminderButtonContainer,
-  SyncSignInBarButton
+  StyledSyncReminderButtonContainer
 } from './styled'
+import { FormButton } from 'browser-components/buttons'
 import {
   CONNECTED_STATE,
   getConnectionState
@@ -59,10 +59,12 @@ const SyncReminderBanner = React.memo(function SyncReminderBanner ({
     <Render if={visible}>
       <SyncDisconnectedBanner height='100px'>
         <StyledSyncReminderSpan>
-          To enjoy the full Neo4j Browser experience, we advise you to use
-          <SyncSignInBarButton onClick={onGetstartedClicked}>
-            Neo4j Browser Sync
-          </SyncSignInBarButton>
+          To enjoy the full Neo4j Browser experience, we advise you to use{` `}
+          <FormButton
+            className='tiny'
+            title='Neo4j Browser Sync'
+            onClick={onGetstartedClicked}
+          />
         </StyledSyncReminderSpan>
         <StyledSyncReminderButtonContainer>
           <StyledCancelLink onClick={() => optOutSync()}>X</StyledCancelLink>

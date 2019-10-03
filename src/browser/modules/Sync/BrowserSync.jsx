@@ -53,7 +53,7 @@ import {
   DrawerSectionBody,
   DrawerToppedHeader
 } from 'browser-components/drawer'
-import { FormButton, SyncSignInButton } from 'browser-components/buttons'
+import { FormButton } from 'browser-components/buttons'
 import { BinIcon } from 'browser-components/icons/Icons'
 import {
   ConsentCheckBox,
@@ -191,7 +191,7 @@ export class BrowserSync extends Component {
             <DrawerSectionBody>
               <DrawerSection>{clearLocalDataContent}</DrawerSection>
               <FormButton
-                label={
+                title={
                   this.state.clearLocalRequested
                     ? 'Sign out + clear'
                     : 'Clear local data'
@@ -202,7 +202,7 @@ export class BrowserSync extends Component {
               />
               <p>&nbsp;</p>
               <FormButton
-                label='Sign Out'
+                title='Sign Out'
                 onClick={() => this.signOutFromSync()}
                 buttonType='drawer'
               />
@@ -235,9 +235,10 @@ export class BrowserSync extends Component {
                 {consentAlertContent}
               </DrawerSection>
               <DrawerSection>
-                <SyncSignInButton onClick={this.logIn.bind(this)}>
-                  Sign In / Register
-                </SyncSignInButton>
+                <FormButton
+                  title='Sign In / Register'
+                  onClick={this.logIn.bind(this)}
+                />
               </DrawerSection>
             </DrawerSectionBody>
           </DrawerSection>

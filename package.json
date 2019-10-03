@@ -124,6 +124,7 @@
   },
   "dependencies": {
     "@neo4j/browser-lambda-parser": "^1.0.3",
+    "@relate-by-ui/buttons": "^1.0.3",
     "@relate-by-ui/css": "^1.0.4",
     "@relate-by-ui/saved-scripts": "^1.0.4",
     "ascii-data-table": "^2.1.1",

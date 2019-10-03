@@ -20,7 +20,6 @@
 
 import styled, { keyframes } from 'styled-components'
 import { StyledCodeBlock } from '../ClickToCode/styled'
-import { SyncSignInButton } from 'browser-components/buttons'
 
 const grow = height => {
   return keyframes`
@@ -78,12 +77,6 @@ export const SyncDisconnectedBanner = styled(Banner)`
   justify-content: space-between;
 `
 
-export const SyncSignInBarButton = styled(SyncSignInButton)`
-  padding: 0 8px 0 8px;
-  margin: 0 12px 0 12px;
-  vertical-align: baseline;
-  border: none;
-`
 export const StyledCancelLink = styled.a`
   cursor: pointer;
   text-decoration: none;

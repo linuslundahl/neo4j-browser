@@ -20,9 +20,9 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { FormButton } from 'browser-components/buttons'
 import {
   SyncDisconnectedBanner,
-  SyncSignInBarButton,
   StyledCancelLink,
   StyledSyncReminderSpan,
   StyledSyncReminderButtonContainer
@@ -45,16 +45,16 @@ class SyncReminderBanner extends Component {
   state = {}
   importSyncManager = () => {
     if (this.syncManager) return Promise.resolve(this.syncManager)
-    return import(/* webpackChunkName: "sync-manager" */ 'shared/modules/sync/SyncSignInManager').then(
-      ({ default: SyncSignInManager }) => {
-        this.syncManager = new SyncSignInManager({
-          dbConfig: this.props.browserSyncConfig.firebaseConfig,
-          serviceReadyCallback: this.serviceReady.bind(this),
-          onSyncCallback: this.props.onSync
-        })
-        return this.syncManager
-      }
-    )
+    return import(
+      /* webpackChunkName: "sync-manager" */ 'shared/modules/sync/SyncSignInManager'
+    ).then(({ default: SyncSignInManager }) => {
+      this.syncManager = new SyncSignInManager({
+        dbConfig: this.props.browserSyncConfig.firebaseConfig,
+        serviceReadyCallback: this.serviceReady.bind(this),
+        onSyncCallback: this.props.onSync
+      })
+      return this.syncManager
+    })
   }
   serviceReady (status) {
     this.setState({ status })
@@ -90,9 +90,7 @@ class SyncReminderBanner extends Component {
           <StyledSyncReminderSpan>
             You are currently not signed into Neo4j Browser Sync. Connect
             through a simple social sign-in to get started.
-            <SyncSignInBarButton onClick={this.logIn.bind(this)}>
-              Sign In
-            </SyncSignInBarButton>
+            <FormButton title='Sign In' onClick={this.logIn.bind(this)} />
           </StyledSyncReminderSpan>
           <StyledSyncReminderButtonContainer>
             <StyledCancelLink onClick={() => optOutSync()}>X</StyledCancelLink>

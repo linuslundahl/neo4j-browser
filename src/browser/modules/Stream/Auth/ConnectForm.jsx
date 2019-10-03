@@ -20,13 +20,9 @@
 
 import React, { Component } from 'react'
 import Render from 'browser-components/Render'
+import { StyledForm, StyledLabel, StyledInput } from 'browser-components/Form'
 import { FormButton } from 'browser-components/buttons'
-import {
-  StyledConnectionForm,
-  StyledConnectionTextInput,
-  StyledConnectionLabel,
-  StyledConnectionFormEntry
-} from './styled'
+import { StyledConnectionFormEntry } from './styled'
 import InputEnterStepping from 'browser-components/InputEnterStepping/InputEnterStepping'
 
 export default class ConnectForm extends Component {
@@ -40,7 +36,7 @@ export default class ConnectForm extends Component {
   }
   render () {
     return (
-      <StyledConnectionForm>
+      <StyledForm>
         <InputEnterStepping
           steps='3'
           submitAction={this.onConnectClick}
@@ -52,8 +48,8 @@ export default class ConnectForm extends Component {
             return (
               <React.Fragment>
                 <StyledConnectionFormEntry>
-                  <StyledConnectionLabel>Connect URL</StyledConnectionLabel>
-                  <StyledConnectionTextInput
+                  <StyledLabel className='bold'>Connect URL</StyledLabel>
+                  <StyledInput
                     {...getInputPropsForIndex(0, {
                       initialFocus: true,
                       'data-testid': 'boltaddress',
@@ -65,8 +61,8 @@ export default class ConnectForm extends Component {
                 </StyledConnectionFormEntry>
 
                 <StyledConnectionFormEntry>
-                  <StyledConnectionLabel>Username</StyledConnectionLabel>
-                  <StyledConnectionTextInput
+                  <StyledLabel className='bold'>Username</StyledLabel>
+                  <StyledInput
                     {...getInputPropsForIndex(1, {
                       'data-testid': 'username',
                       onChange: this.props.onUsernameChange,
@@ -77,8 +73,8 @@ export default class ConnectForm extends Component {
                 </StyledConnectionFormEntry>
 
                 <StyledConnectionFormEntry>
-                  <StyledConnectionLabel>Password</StyledConnectionLabel>
-                  <StyledConnectionTextInput
+                  <StyledLabel className='bold'>Password</StyledLabel>
+                  <StyledInput
                     {...getInputPropsForIndex(2, {
                       'data-testid': 'password',
                       onChange: this.props.onPasswordChange,
@@ -90,16 +86,18 @@ export default class ConnectForm extends Component {
                 </StyledConnectionFormEntry>
 
                 <Render if={!this.state.connecting}>
-                  <FormButton data-testid='connect' {...getSubmitProps()}>
-                    Connect
-                  </FormButton>
+                  <FormButton
+                    title='Connect'
+                    data-testid='connect'
+                    {...getSubmitProps()}
+                  />
                 </Render>
                 <Render if={this.state.connecting}>Connecting...</Render>
               </React.Fragment>
             )
           }}
         />
-      </StyledConnectionForm>
+      </StyledForm>
     )
   }
 }

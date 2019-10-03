@@ -30,14 +30,14 @@ export const ConsentCheckBox = props => {
           id='syncConsentCheckbox'
           value='first_checkbox'
         />
-        &nbsp; By checking this box you are agreeing to the &nbsp;
+        {` `}By checking this box you are agreeing to the{` `}
         <StyledSimpleLink
           href='http://neo4j.com/terms/neo4j-browser-sync/'
           target='blank'
         >
           Neo4j Browser Sync Terms of Use
         </StyledSimpleLink>
-        &nbsp; and our &nbsp;
+        {` `}and our{` `}
         <StyledSimpleLink
           href='http://neo4j.com/privacy-policy/'
           target='blank'

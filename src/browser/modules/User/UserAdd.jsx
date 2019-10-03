@@ -39,7 +39,6 @@ import FrameAside from 'browser/modules/Frame/FrameAside'
 import FrameError from 'browser/modules/Frame/FrameError'
 import FrameSuccess from 'browser/modules/Frame/FrameSuccess'
 
-import { CloseIcon } from 'browser-components/icons/Icons'
 import { FormButton, StyledLink } from 'browser-components/buttons'
 import {
   StyledForm,
@@ -47,7 +46,7 @@ import {
   StyledFormElementWrapper,
   StyledLabel
 } from 'browser-components/Form'
-import { StyledInput, StyleRolesContainer } from './styled'
+import { StyledInput, StyledRolesContainer } from './styled'
 import { NEO4J_BROWSER_USER_ACTION_QUERY } from 'services/bolt/txMetadata'
 
 export class UserAdd extends Component {
@@ -80,13 +79,13 @@ export class UserAdd extends Component {
   listRoles () {
     return (
       !!this.state.roles.length && (
-        <StyleRolesContainer className='roles-inline'>
+        <StyledRolesContainer className='roles-inline'>
           {this.state.roles.map((role, i) => {
             return (
               <FormButton
                 key={i}
-                label={role}
-                icon={<CloseIcon />}
+                title={role}
+                icon='close'
                 buttonType='tag'
                 onClick={() => {
                   this.setState({ roles: this.removeRole(role) })
@@ -94,7 +93,7 @@ export class UserAdd extends Component {
               />
             )
           })}
-        </StyleRolesContainer>
+        </StyledRolesContainer>
       )
     )
   }
@@ -239,7 +238,9 @@ export class UserAdd extends Component {
     const frameContents = (
       <StyledForm id={`user-add-${formId}`}>
         <StyledFormElement>
-          <StyledLabel htmlFor={usernameId}>Username</StyledLabel>
+          <StyledLabel className='bold' htmlFor={usernameId}>
+            Username
+          </StyledLabel>
           <StyledInput
             className='username'
             name={usernameId}
@@ -250,7 +251,9 @@ export class UserAdd extends Component {
 
         <StyledFormElementWrapper>
           <StyledFormElement>
-            <StyledLabel htmlFor={passwordId}>Password</StyledLabel>
+            <StyledLabel className='bold' htmlFor={passwordId}>
+              Password
+            </StyledLabel>
             <StyledInput
               type='password'
               className='password'
@@ -260,7 +263,7 @@ export class UserAdd extends Component {
             />
           </StyledFormElement>
           <StyledFormElement>
-            <StyledLabel htmlFor={passwordConfirmId}>
+            <StyledLabel className='bold' htmlFor={passwordConfirmId}>
               Confirm password
             </StyledLabel>
             <StyledInput
@@ -274,7 +277,9 @@ export class UserAdd extends Component {
         </StyledFormElementWrapper>
 
         <StyledFormElement>
-          <StyledLabel htmlFor={rolesSelectorId}>Roles</StyledLabel>
+          <StyledLabel className='bold' htmlFor={rolesSelectorId}>
+            Roles
+          </StyledLabel>
           {listOfAvailableRoles(rolesSelectorId)}
           {this.listRoles()}
         </StyledFormElement>

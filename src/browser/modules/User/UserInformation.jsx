@@ -33,12 +33,11 @@ import {
 } from 'shared/modules/cypher/boltUserHelper'
 
 import { FormButton } from 'browser-components/buttons'
-import { CloseIcon } from 'browser-components/icons/Icons'
 import { StyledBodyTr } from 'browser-components/DataTables'
 import {
   StyledUserTd,
   StyledButtonContainer,
-  StyleRolesContainer
+  StyledRolesContainer
 } from './styled'
 
 import RolesSelector from './RolesSelector'
@@ -88,9 +87,13 @@ export class UserInformation extends Component {
     this.props.status.includes('is_suspended') ? 'Suspended' : 'Active'
   statusButton () {
     return this.props.status.includes('is_suspended') ? (
-      <FormButton label='Activate' onClick={this.activateUser.bind(this)} />
+      <FormButton title='Activate' onClick={this.activateUser.bind(this)} />
     ) : (
-      <FormButton label='Suspend' onClick={this.suspendUser.bind(this)} />
+      <FormButton
+        title='Suspend'
+        buttonType='drawer'
+        onClick={this.suspendUser.bind(this)}
+      />
     )
   }
   passwordChange = () =>
@@ -98,13 +101,13 @@ export class UserInformation extends Component {
   listRoles () {
     return (
       !!this.state.roles.length && (
-        <StyleRolesContainer>
+        <StyledRolesContainer>
           {this.state.roles.map(role => {
             return (
               <FormButton
                 key={v4()}
-                label={role}
-                icon={<CloseIcon />}
+                title={role}
+                icon='close'
                 buttonType='tag'
                 onClick={() => {
                   this.props.bus.self(
@@ -119,7 +122,7 @@ export class UserInformation extends Component {
               />
             )
           })}
-        </StyleRolesContainer>
+        </StyledRolesContainer>
       )
     )
   }

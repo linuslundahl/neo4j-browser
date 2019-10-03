@@ -22,6 +22,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { dim } from 'browser-styles/constants'
 
+import { Button, Icon } from 'semantic-ui-react'
+import {
+  ButtonActionPrimary,
+  ButtonActionSecondary,
+  ButtonDestructivePrimary,
+  ButtonDismissPrimary
+} from '@relate-by-ui/buttons'
+
 import SVGInline from 'react-svg-inline'
 
 import { hexToRgba } from '../../styles/utils'
@@ -96,7 +104,7 @@ export const NavigationButtonContainer = styled.li`
   }
 `
 
-const StyledFormButton = styled.button`
+const StyledOldFormButton = styled.button`
   color: ${props => props.theme.primaryButtonText};
   background-color: ${props => props.theme.primaryButtonBackground};
   border: 1px solid ${props => props.theme.primaryButtonBackground};
@@ -118,64 +126,66 @@ const StyledFormButton = styled.button`
   }
 `
 
-const StyledTagButton = styled(StyledFormButton)`
-  background-color: ${props => props.theme.secondaryButtonBackgroundHover};
-  color: ${props => props.theme.secondaryButtonTextHover};
-  border: 1px solid ${props => props.theme.secondaryButtonBackgroundHover};
-  font-weight: 400;
-  padding: 6px 30px 6px 12px;
-  position: relative;
-  text-align: left;
+// const StyleFormButton = ButtonActionPrimary
 
-  > i {
-    background-color: ${props => props.theme.primaryButtonText};
-    border-radius: 50%;
-    color: ${props => props.theme.secondaryButtonBackgroundHover};
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+// const StyledTagButton = styled(StyledOldFormButton)`
+//   background-color: ${props => props.theme.secondaryButtonBackgroundHover};
+//   color: ${props => props.theme.secondaryButtonTextHover};
+//   border: 1px solid ${props => props.theme.secondaryButtonBackgroundHover};
+//   font-weight: 400;
+//   padding: 6px 30px 6px 12px;
+//   position: relative;
+//   text-align: left;
 
-    > span {
-      display: inline-block;
-      vertical-align: middle;
-    }
+//   > i {
+//     background-color: ${props => props.theme.primaryButtonText};
+//     border-radius: 50%;
+//     color: ${props => props.theme.secondaryButtonBackgroundHover};
+//     position: absolute;
+//     right: 5px;
+//     top: 50%;
+//     transform: translateY(-50%);
+//     width: 18px;
+//     height: 18px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
 
-    svg {
-      display: block;
-      width: 8px !important;
-      height: 8px !important;
-    }
+//     > span {
+//       display: inline-block;
+//       vertical-align: middle;
+//     }
 
-    line {
-      stroke-width: 4px;
-    }
-  }
+//     svg {
+//       display: block;
+//       width: 8px !important;
+//       height: 8px !important;
+//     }
 
-  &:hover {
-    > i {
-      color: ${props => props.theme.secondaryButtonBackgroundHover};
-    }
-  }
-`
+//     line {
+//       stroke-width: 4px;
+//     }
+//   }
 
-const StyledSecondaryFormButton = styled(StyledFormButton)`
-  color: ${props => props.theme.secondaryButtonText};
-  border: ${props => props.theme.secondaryButtonBorder};
-  background-color: ${props => props.theme.secondaryButtonBackground};
-  &:hover {
-    color: ${props => props.theme.secondaryButtonTextHover};
-    border: ${props => props.theme.secondaryButtonBorderHover};
-    background-color: ${props => props.theme.secondaryButtonBackground};
-  }
-`
+//   &:hover {
+//     > i {
+//       color: ${props => props.theme.secondaryButtonBackgroundHover};
+//     }
+//   }
+// `
 
-export const StyledErrorBoundaryButton = styled(StyledFormButton)`
+// const StyledSecondaryFormButton = styled(StyledOldFormButton)`
+//   color: ${props => props.theme.secondaryButtonText};
+//   border: ${props => props.theme.secondaryButtonBorder};
+//   background-color: ${props => props.theme.secondaryButtonBackground};
+//   &:hover {
+//     color: ${props => props.theme.secondaryButtonTextHover};
+//     border: ${props => props.theme.secondaryButtonBorderHover};
+//     background-color: ${props => props.theme.secondaryButtonBackground};
+//   }
+// `
+
+export const StyledErrorBoundaryButton = styled(StyledOldFormButton)`
   color: #da4433;
   border: 1px solid #da4433;
   background-color: #fbf1f0;
@@ -185,64 +195,54 @@ export const StyledErrorBoundaryButton = styled(StyledFormButton)`
     background-color: #fbf1f0;
   }
 `
-export const StyledDestructiveButton = styled(StyledFormButton)`
-  color: #fff;
-  border: 1px solid #da4433;
-  background-color: #da4433;
-  &:hover {
-    color: #fff;
-    border: 1px solid #da4433;
-    background-color: #da4433;
-  }
-`
-const StyledDrawerFormButton = styled(StyledSecondaryFormButton)`
-  color: #bcc0c9;
-  border-color: #bcc0c9;
-  outline: none;
-  &:hover {
-    color: #ffffff;
-    border-color: #ffffff;
-  }
-`
+// const StyledDestructiveButton = styled(StyledOldFormButton)`
+//   color: #fff;
+//   border: 1px solid #da4433;
+//   background-color: #da4433;
+//   &:hover {
+//     color: #fff;
+//     border: 1px solid #da4433;
+//     background-color: #da4433;
+//   }
+// `
+// const StyledDrawerFormButton = styled(StyledSecondaryFormButton)`
+//   color: #bcc0c9;
+//   border-color: #bcc0c9;
+//   outline: none;
+//   &:hover {
+//     color: #ffffff;
+//     border-color: #ffffff;
+//   }
+// `
+
+const TagButton = props => {
+  const { title, icon, ...rest } = props
+  return (
+    <Button
+      className='relate-by-ui--tag'
+      icon
+      size='tiny'
+      labelPosition='right'
+      {...rest}
+    >
+      {title}
+      <Icon name={`${icon}`} />
+    </Button>
+  )
+}
 
 const buttonTypes = {
-  primary: StyledFormButton,
-  secondary: StyledSecondaryFormButton,
-  drawer: StyledDrawerFormButton,
-  destructive: StyledDestructiveButton,
-  tag: StyledTagButton
+  primary: ButtonActionPrimary,
+  secondary: ButtonActionSecondary,
+  drawer: ButtonDismissPrimary,
+  destructive: ButtonDestructivePrimary,
+  tag: TagButton
 }
 
 export const FormButton = props => {
-  const { icon, label, children, ...rest } = props
-  const ButtonType = buttonTypes[props.buttonType] || buttonTypes.primary
-
-  if (icon && label) {
-    return (
-      <ButtonType {...rest} type='button'>
-        {label} {icon}
-      </ButtonType>
-    )
-  }
-  if (icon) {
-    return (
-      <ButtonType {...rest} type='button'>
-        {icon}
-      </ButtonType>
-    )
-  }
-  if (label) {
-    return (
-      <ButtonType {...rest} type='button'>
-        {label}
-      </ButtonType>
-    )
-  }
-  return (
-    <ButtonType {...props} type='button'>
-      {children}
-    </ButtonType>
-  )
+  const { label, buttonType, ...rest } = props
+  const ButtonType = buttonTypes[buttonType] || buttonTypes.primary
+  return <ButtonType title={label} {...rest} />
 }
 
 export const CypherFrameButton = props => {
@@ -439,14 +439,5 @@ export const StyledLink = styled.a`
   &:hover {
     color: #5dade2;
     text-decoration: none;
-  }
-`
-
-export const SyncSignInButton = styled(FormButton)`
-  background-color: #5fb434;
-  color: #ffffff;
-  &:hover {
-    background-color: ${props => props.theme.formButtonBackgroundHover};
-    color: #797979;
   }
 `

@@ -19,15 +19,16 @@
  */
 
 import styled from 'styled-components'
-import { StyledInput } from 'browser-components/Form'
+import { StyledInput, StyledFormElement } from 'browser-components/Form'
 import { StyledFrameAside } from '../../Frame/styled'
 
 export const StyledConnectionForm = styled.form`
   padding: 0 15px;
 `
 export const StyledConnectionAside = styled(StyledFrameAside)``
-export const StyledConnectionFormEntry = styled.div`
-  padding-bottom: 15px;
+export const StyledConnectionFormEntry = styled(StyledFormElement)`
+  min-width: 200px;
+  max-width: 50%;
 `
 export const StyledConnectionLabel = styled.label`
   display: block;
@@ -46,7 +47,6 @@ export const StyledConnectionBody = styled.div`
   flex: 1 1 auto;
   font-size: 1.3em;
   line-height: 2em;
-  padding-left: 50px;
 `
 export const StyledConnectionFooter = styled.span`
   font-size: 0.95em;

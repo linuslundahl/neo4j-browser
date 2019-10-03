@@ -52,7 +52,7 @@ export const StyledButtonContainer = styled.div`
   }
 `
 
-export const StyleRolesContainer = styled.div`
+export const StyledRolesContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -60,7 +60,7 @@ export const StyleRolesContainer = styled.div`
     flex-direction: row;
     align-items: flex-start;
 
-    > button {
+    > .ui.relate-by-ui--tag {
       margin-right: 5px;
     }
   }
@@ -69,7 +69,7 @@ export const StyleRolesContainer = styled.div`
     padding: 10px 0;
   }
 
-  > button {
+  > .ui.relate-by-ui--tag {
     margin: 0 0 5px 0;
     &:last-child {
       margin-bottom: 0;
